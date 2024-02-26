@@ -1,0 +1,25 @@
+html(lang="zh")
+    include includes/head.pug
+    style.
+        input.addr {
+            width: 25rem;
+            margin-right: 1rem
+        }
+        input.amount {
+            margin-right: 1rem;
+        }
+    body
+        include includes/menu.pug
+        h1 转账
+        p 请仔细输入接收 NOTE 的铭文钱包地址以及转账数量，它以 bc1p 开头：
+        form(action="/send", method="post")
+            input(type="text" class="addr" name="receive" placeholder="bc1p 的地址")
+            input(type="number" class="amount" name="amount" placeholder="数量（NOTE）")
+            input(type="submit" value="提交")
+
+        div(class="notice")
+            p 注意：
+            ul 
+                li NOTE 的最小单位是 sats：1 NOTE = 100000000 sats（1 亿，10 的 8 次方）；
+                li 1 张 = 1000 NOTE = 100000000000 sats（1 后面 11 个 0）;
+                li 避免输错，页面上转账的单位为 NOTE 而不是 sats，如果想转 1 张，数量填写 1000。

@@ -1,0 +1,15 @@
+html(lang="zh")
+    include includes/head.pug
+    body
+        include includes/menu.pug
+        h1 创建钱包
+        if existed
+            p 钱包已存在：
+        else 
+            p 未找到钱包，创建新钱包。
+        if !existed
+            p 助记词如下：
+            p=memo
+            p 请一定保管好助记词，助记词不会在页面展示第二次。
+        p 资金钱包地址：#{main}
+        p NOTE 铭文钱包地址：#{token}

@@ -1,0 +1,11 @@
+{
+  "watch": [
+    "src",
+    ".trigger"
+  ],
+  "ext": "ts",
+  "ignore": [
+    "src/**/*.spec.ts"
+  ],
+  "exec": "ts-node ./src/webui.ts"
+}

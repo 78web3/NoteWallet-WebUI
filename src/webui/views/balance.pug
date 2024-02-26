@@ -1,0 +1,15 @@
+doctype html
+html(lang="zh")
+    include includes/head.pug
+
+    body
+        include includes/menu.pug
+        h1 余额查询
+        p 当前资金钱包余额：已确认 #{main.confirmed}，未确认 #{main.unconfirmed}
+        p 当前 NOTE 铭文钱包余额：已确认 #{token.confirmed}（NOTE），未确认 #{token.unconfirmed}
+
+        p(class="notice")
+         | 这个页面仅展示当前钱包的余额，如果你想查询其他钱包的 NOTE 余额，请访问
+         a(href="https://note-balance.vercel.app/") 这里
+
+
