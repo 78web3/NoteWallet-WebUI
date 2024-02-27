@@ -55,13 +55,16 @@ router.get("/", async (ctx) => {
 router.get("/balance", async (ctx, next) => {
     const [mainAddr, tokenList] = await currWallet.getBalance();
     const { mainAddress } = mainAddr!;
+
     const tokenAddress = tokenList![0];
-    tokenAddress!.confirmed /= BigInt(100000000.0);
-    tokenAddress!.unconfirmed /= BigInt(100000000.0);
+    if (tokenAddress) {
+        tokenAddress!.confirmed = BigInt(tokenAddress!.confirmed) / 100000000n;
+        tokenAddress!.unconfirmed = BigInt(tokenAddress!.unconfirmed) / 100000000n;
+    }
 
     await ctx.render('balance', {
-        token: tokenAddress,
-        main: mainAddress
+        token: tokenAddress || { confirmed: 0, unconfirmed: 0 },
+        main: mainAddress || { confirmed: 0, unconfirmed: 0 }
     })
 })
 
@@ -74,7 +77,8 @@ router.post("/send", async (ctx, next) => {
     if (!BigInt(amount)) {
         msg = `${amount} 数量填写错误`
     }
-    await currWallet.sendNote(receive, BigInt(amount))
+    const satsAmount = BigInt(amount) * 100000000n;
+    await currWallet.sendNote(receive, satsAmount)
 
     await ctx.render('send-result', { msg: msg })
 })

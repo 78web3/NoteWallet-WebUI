@@ -8,6 +8,9 @@ html(lang="zh")
         input.amount {
             margin-right: 1rem;
         }
+        .red {
+            color: red;
+        }
     body
         include includes/menu.pug
         h1 转账
@@ -22,4 +25,4 @@ html(lang="zh")
             ul 
                 li NOTE 的最小单位是 sats：1 NOTE = 100000000 sats（1 亿，10 的 8 次方）；
                 li 1 张 = 1000 NOTE = 100000000000 sats（1 后面 11 个 0）;
-                li 避免输错，页面上转账的单位为 NOTE 而不是 sats，如果想转 1 张，数量填写 1000。
+                li 避免输错，<span class="red">页面上转账的单位为 NOTE 而不是 sats</span>，如果想转 1 张，数量填写 1000。
